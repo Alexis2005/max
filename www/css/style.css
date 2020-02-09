@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+
+.a{
+	background:url("../img/descarga.jpg"); 
+	padding-top: 20px;
+	font-size: 60px;
+	color: red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 80px;
+}

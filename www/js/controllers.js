@@ -10,9 +10,26 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  var database = firebase.database();
+
 angular.module('starter.controllers', [])
 
-.controller("Registro",function($scope, $rootScope){
+.controller("Registro", function($scope, $rootScope){
+  $scope.obtener = function(usuario){
+    firebase.auth().createUserWithEmailAndPassword(usuario.Correo, usuario.Contra).then(function Listo(x){
+      swal("Listo", "Registro correctamente", "success" );
+
+      firebase.database().ref(x.user.uid).set({
+        correo:usuario.Correo,
+        ID:x.user.uid
+      })
+    }).catch(function(error) {
+       // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      swal("Error",errorMessage, "error");
+    });
+  }
 
 })
 

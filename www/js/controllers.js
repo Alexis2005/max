@@ -20,9 +20,16 @@ angular.module('starter.controllers', [])
       swal("Listo", "Registro correctamente", "success" );
 
       firebase.database().ref(x.user.uid).set({
-        correo:usuario.Correo,
-        ID:x.user.uid
+      correo:usuario.Correo,
+       ID:x.user.uid
       })
+
+      firebase.auth().signOut().then(function() {
+       // Sign-out successful.
+      }).catch(function(error) {
+       // An error happened.
+      });
+
     }).catch(function(error) {
        // Handle Errors here.
       var errorCode = error.code;
@@ -33,7 +40,62 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope) {
+
+
+$scope.categorias = [
+{
+  Nombre: "TV y Video",
+  Icono: "ion-monitor"
+},
+{
+  Nombre: "Telefonos",
+  Icono: "ion-iphone"
+},
+{
+  Nombre: "Computacion",
+  Icono: "ion-laptop"
+},
+{
+  Nombre: "Camara",
+  Icono: "ion-camera"
+},
+{
+  Nombre: "Drones",
+  Icono: "ion-bug"
+},
+{
+  Nombre: "Ambientadores",
+  Icono: "ion-bonfire"
+},
+{
+  Nombre: "Prendas Electronicas",
+  Icono: "ion-ios7-bolt"
+},
+{
+  Nombre: "Microfonos",
+  Icono: "ion-ios7-mic"
+},
+{
+  Nombre: "Audio para vehículos",
+  Icono: "ion-speakerphone"
+},
+{
+  Nombre: "VideoJuegos",
+  Icono: "ion-game-controller-a"
+}
+]
+
+
+})
+
+
+
+
+
+
+
+
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
